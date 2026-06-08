@@ -144,6 +144,7 @@ private:
 	const uint32_t kMaxOreCount = 4;	// 所持できる鉱石の最大数
 	const uint32_t kMaxGearCount = 2;	// 所持できる歯車の最大数
 
+	const float kRequiredMinigTime = 1.0f;	// 採掘に必用な時間
 
 	// =========================================================
 	// Member Variables
@@ -156,6 +157,8 @@ private:
 
 	uint32_t oreCount_ = 0;	// 現在の所持鉱石数
 	uint32_t gearCount_ = 0; // 現在の所持歯車数
+
+	float miningTimer_ = 0.0f;	// 採掘の長押し時間カウント
 
 	FlyAway flyAway_;
 };

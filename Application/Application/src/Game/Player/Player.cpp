@@ -91,11 +91,23 @@ void Player::Update(float deltaTime) {
 	}
 
 	// 実際の採掘実行（キー入力）
-	if (input->TriggerKey(DIK_SPACE) || input->IsTriggerButton(0, XINPUT_GAMEPAD_A)) {
-		// 鉱石採掘判定
-		if (OreManager::GetInstance()->TryBreakAt(targetPos, kMiningRange)) {
-			// 鉱石採掘時の処理
+	if (input->PushKey(DIK_SPACE) || input->IsPressButton(0, XINPUT_GAMEPAD_A)) {
+		// 採掘タイマーを進める
+		miningTimer_ += deltaTime;
+
+		// 設定時間を超えたら鉱石を破壊
+		if (miningTimer_ >= kRequiredMinigTime) {
+			// 鉱石採掘判定
+			if (OreManager::GetInstance()->TryBreakAt(targetPos, kMiningRange)) {
+				// 鉱石採掘時の固有処理
+
+				// 採掘したらタイマーリセット
+				miningTimer_ = 0.0f;
+			}
 		}
+	// 入力されていなければ採掘タイマーリセット
+	} else {
+		miningTimer_ = 0.0f;
 	}
 #pragma endregion
 
