@@ -7,6 +7,7 @@
 #include <ParticleEffect/ParticleEffectManager.h>
 #include <SoundManager.h>
 #include <Collider/CollisionMath.h>
+#include <src/Game/Particles/Debuff/DebuffManager.h>
 
 // Application
 #include <src/Game/Ore/OreManager.h>
@@ -179,6 +180,8 @@ void Player::OnCollision(Cygnus::Collider* other) {
 	if (other->GetTag() == "Mummy") {
 		slowDown_ = kSlowDownMax_; 
 		Cygnus::SoundManager::GetInstance()->Play("slow", false, 0.5f);
+		//デバフパーティクルを付ける
+		DebuffManager::GetInstance()->Create(object_->transform_.translate_);
 	}
 
 	if (other->GetTag() == "Sandstorm") {

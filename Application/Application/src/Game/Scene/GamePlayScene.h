@@ -109,4 +109,11 @@ private:
 
 	// ------ ミイラ召喚処理 ---------
 	std::unique_ptr<MummyManager> mummy;
+
+	// ------ ゴール演出処理 ---------
+	const float goalEffectTime_ = 2.0f; // ゴール演出時間
+	float goalEffectTimer_ = 0.0f; // ゴール演出タイマー
+	float goalEffectRange_ = 25.0f; 
+	float emitRate = 4.0f;
+
 };

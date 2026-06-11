@@ -12,6 +12,7 @@
 
 // C++
 #include <numbers>
+#include <random>
 
 // Engine
 #include <Engine/Scene/SceneManager.h>
@@ -348,8 +349,33 @@ void GamePlayScene::Draw() {
 
 	if (carrier_->IsGoal())
 	{
-		Cygnus::SceneManager::GetInstance()->ChangeScene("SELECT");
-		Cygnus::CollisionManager::GetInstance()->Clear();
+		goalEffectTimer_ += Cygnus::TimeManager::GetInstance()->GetDeltaTime();
+
+		//ランダムエンジン初期化
+		std::random_device rd;
+		std::mt19937 gen(rd());
+		std::uniform_real_distribution<float> emitRange(-goalEffectRange_,goalEffectRange_);
+		std::uniform_real_distribution<float> rate(0.0f, 1.0f);
+
+		float probability = Cygnus::TimeManager::GetInstance()->GetDeltaTime() * emitRate;
+
+		//発生処理
+		if (probability > rate(gen))
+		{
+			//発生座標をゴールオブジェクトの周辺にランダムで設定
+			Cygnus::Float3 emitPos = Cygnus::Float3{ emitRange(gen), 0.0f, emitRange(gen) };
+
+			//発生
+			FireworksManager::GetInstance()->CreateFireworks(emitPos);
+		}
+
+		//タイマーがゴール演出時間を超えたらセレクトシーンに遷移
+		if (goalEffectTimer_ >= goalEffectTime_) {
+			Cygnus::SceneManager::GetInstance()->ChangeScene("SELECT");
+			Cygnus::CollisionManager::GetInstance()->Clear();
+			//タイマーをリセット
+			goalEffectTimer_ = 0.0f;
+		}
 	}
 
 	// ImGuiの内部コマンドを生成する
