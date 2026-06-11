@@ -16,7 +16,7 @@ namespace MummyState {
 	public:
 		void Update(Mummy& mummy, float dt) override;
 	private:
-		const float kRotateYSpeed_ = 1.0f / 20.0f;
+		float rotateY_ = 0.0f;
 		float summonTime_ = 2.0f;
 	};
 
@@ -38,7 +38,7 @@ namespace MummyState {
 		void Update(Mummy& mummy, float dt) override;
 	private:
 		float performanceTime_ = 1.0f;//死亡演出時間
-		const float kRotateYSpeed_ = 1.0f / 2.0f;
+		float rotateY_ = 0.0f;
 	};
 }
 

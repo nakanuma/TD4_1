@@ -150,6 +150,22 @@
                 1.0,
                 -14.0
             ]
+        },
+        {
+            "collider": {
+                "size": [
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "tag": "WorkBench"
+            },
+            "objectName": "WorkBench",
+            "position": [
+                10.0,
+                1.0,
+                2.5
+            ]
         }
     ]
 }

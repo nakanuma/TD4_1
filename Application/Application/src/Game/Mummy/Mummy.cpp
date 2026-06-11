@@ -75,7 +75,7 @@ void Mummy::Move(const Cygnus::Float3& move) {
 }
 
 void Mummy::Rotate(const Cygnus::Float3 rotate) {
-	object_->transform_.rotate_ += rotate;
+	object_->transform_.rotate_ = rotate;
 	object_->UpdateMatrix();
 }
 
