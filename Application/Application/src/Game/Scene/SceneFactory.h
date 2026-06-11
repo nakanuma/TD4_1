@@ -39,5 +39,5 @@ private:
 	// =========================================================
 
 	// 初期化時シーン名
-	std::string initialSceneName = "GAMEPLAY";
+	std::string initialSceneName = "TITLE";
 };

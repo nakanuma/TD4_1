@@ -35,7 +35,7 @@ void DebuffManager::Update(float dt) {
 
 			int count = countDis(gen); // 生成された整数を取得
 
-			Cygnus::ParticleEffectManager::GetInstance()->Emit("debuff", debuff.position + Cygnus::Float3{ debuff.position.x+disX(gen), debuff.position.y + kHeight_, debuff.position.z + disZ(gen) }, count);
+			Cygnus::ParticleEffectManager::GetInstance()->Emit("debuff", debuff.position + Cygnus::Float3{ disX(gen),  kHeight_,  disZ(gen) }, count);
 
 		}
 
